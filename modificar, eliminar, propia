@@ -1,0 +1,62 @@
+# Función 1: Modificar un producto existente
+def modificar_producto(inventario):
+    if len(inventario) == 0:
+        print("No hay productos cargados en el inventario.")
+        return
+
+    nombre_buscar = input("Ingrese el nombre del producto que desea modificar: ").lower()
+    encontrado = False
+
+    for producto in inventario:
+        if producto["nombre"].lower() == nombre_buscar:
+            encontrado = True
+            print(f"Producto encontrado: {producto['nombre']} - Precio actual: ${producto['precio']}")
+            
+            # Pedimos los nuevos valores
+            nuevo_precio = float(input("Ingrese el nuevo precio: "))
+            producto["precio"] = nuevo_precio
+            print("¡Producto modificado con éxito!")
+            break
+
+    if not encontrado:
+        print("El producto no existe en el inventario.")
+
+
+# Función 2: Dar de baja (eliminar) un producto con confirmación
+def eliminar_producto(inventario):
+    if len(inventario) == 0:
+        print("No hay productos cargados para eliminar.")
+        return
+
+    nombre_buscar = input("Ingrese el nombre del producto a eliminar: ").lower()
+    encontrado = False
+
+    for producto in inventario:
+        if producto["nombre"].lower() == nombre_buscar:
+            encontrado = True
+            confirmacion = input(f"¿Estás seguro de que querés eliminar '{producto['nombre']}'? (s/n): ").lower()
+            
+            if confirmacion == 's':
+                inventario.remove(producto)
+                print("¡Producto eliminado con éxito!")
+            else:
+                print("Operación cancelada. El producto no fue borrado.")
+            break
+
+    if not encontrado:
+        print("El producto no existe.")
+
+
+# Función 3: Operación propia (Cálculo del valor total del inventario)
+def calcular_total_inventario(inventario):
+    if len(inventario) == 0:
+        print("El inventario está vacío, no se puede calcular el total.")
+        return
+
+    total = 0
+    for producto in inventario:
+        # Regla de negocio: Multiplicamos el precio por la cantidad en stock
+        subtotal = producto["precio"] * producto["cantidad"]
+        total += subtotal
+
+    print(f"El valor total de la inversión en el inventario es: ${total}")
