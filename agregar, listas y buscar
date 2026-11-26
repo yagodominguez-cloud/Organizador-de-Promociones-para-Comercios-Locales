@@ -1,27 +1,26 @@
-# Función para ver todos los productos cargados
+# función para ver todos los productos cargados
 def ver_productos(inventario):
-    if len(inventario) == 0:
-        print("\n--- No hay productos cargados en el sistema ---")
+     if len(inventario) == 0:
+         print("\n--- no hay productos cargados en el sistema ---")
     else:
         print("\n--- LISTA DE PRODUCTOS ---")
         for p in inventario:
-            print(f"• Nombre: {p['nombre']} | Precio: ${p['precio']} | Fecha: {p['fecha']}")
+            print(f"• nombre: {p['nombre']} | precio: ${p['precio']} | fecha: {p['fecha']}")
 
-# Función para buscar un producto por nombre
+# función para buscar un producto por nombre
 def buscar_producto(inventario):
     if len(inventario) == 0:
-        print("\n--- No hay productos para buscar en el sistema ---")
+        print("\n--- no hay productos para buscar en el sistema ---")
         return
-    
     buscado = input("\nIngresá el nombre del producto que querés buscar: ").lower()
-    encontrado = False
-    
+    encontrado = false
     for p in inventario:
-        # Usamos .lower() para que coincida sin importar mayúsculas o minúsculas
+
+    # usamos .lower() para que coincida sin importar mayúsculas o minúsculas
         if p['nombre'].lower() == buscado:
-            print(f"¡Encontrado! -> Nombre: {p['nombre']} | Precio: ${p['precio']} | Fecha: {p['fecha']}")
-            encontrado = True
+            print(f"¡encontrado! ->nombre: {p['nombre']} | precio: ${p['precio']} | fecha: {p['fecha']}")
+            encontrado = true
             break
             
     if not encontrado:
-        print("El producto no se encuentra registrado en el sistema.")
+        print("el producto no se encuentra registrado en el sistema.")
